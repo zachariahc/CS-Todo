@@ -1,0 +1,27 @@
+.todo-container {
+    background: white;
+    margin: 15px;
+    padding-top: 10px;
+}
+
+.todo-group {
+    display: flex; 
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px
+}
+
+.todo-text-icon { 
+    display:  flex;
+    align-items: center;
+
+}
+
+.cal-group {
+    padding-left: 15px
+}
+
+.todo-name {
+    margin-left: 10px;;
+}

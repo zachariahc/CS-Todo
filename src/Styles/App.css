@@ -1,0 +1,34 @@
+.app {
+  display: flex;
+  justify-content: center
+}
+
+.main { 
+  width: 750px;
+  margin-top: 100px;
+  height: 100vh;
+}
+
+.tab-group { 
+  display: flex;
+  padding: 10px;
+}
+
+.tab-group__tabs {
+  cursor: pointer
+}
+
+.tab-group__tabs + .completed-tab {
+  padding-left: 10px;
+}
+
+.todo-list-group {
+  background: white;
+  box-shadow: 11px 3px 14px -6px rgba(51,51,51,1);
+  height: 100vh; 
+  border-radius: 15px;
+}
+
+.bold {
+  font-weight: bold;
+}
