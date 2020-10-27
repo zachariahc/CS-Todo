@@ -40,7 +40,9 @@ function App() {
           </p>
         </div>
 
-        <div className="todo-list-group">
+       <div style={{display: 'flex'}}>
+
+       <div className="todo-list-group" style={{width: '75%'}}>
           {tab === "Pending"
             ? todos.map((x, i) => {
                 if (x.done === false) {
@@ -69,6 +71,26 @@ function App() {
                 }
               })}
         </div>
+
+        <div style={{border: '2px solid red', width: '25%'}}>
+          <div style={{border: '2px solid pink', margin: '10px'}}>
+            <p>
+            Wednesday
+            </p>
+            <p>
+            November, 21
+            </p>
+            <p>
+            2020
+            </p>
+          </div>
+          <div style={{border: '2px solid blue', margin: '10px', width: '50%'}}>
+            Todos:
+            {todos.length}
+          </div>
+        </div>
+
+       </div>
       </div>
     </div>
   );
