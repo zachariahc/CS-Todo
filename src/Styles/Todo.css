@@ -2,26 +2,72 @@
     background: white;
     margin: 15px;
     padding-top: 10px;
+    border: 1px solid rgb(233, 231, 231);
+    box-shadow: 5px 5px 14px -13px rgba(51,51,51,1);
+    border-radius: 5px;
+    min-height: 75px;
 }
-
 .todo-group {
     display: flex; 
     justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 3px;
     padding: 10px
 }
 
 .todo-text-icon { 
     display:  flex;
     align-items: center;
-
 }
 
 .cal-group {
-    padding-left: 15px
+    padding-left: 5px
 }
-
+.cal-date {
+  font-size: 12px;
+  font-weight: 400;  
+}
 .todo-name {
     margin-left: 10px;;
+}
+.chip-levels-group > p {
+    margin: 0px 3px;
+}
+.chip-levels-group { 
+  display: flex;
+  justify-content: flex-end;
+}
+.no-chip-color {
+   background: #CBCBCB;
+   border-radius: 25px;
+   text-align: center;
+   width: 50px;
+   padding: 5px; 
+   color: white;
+   font-size: 12px;
+}
+.chip-color-3 {
+   background: #5fcd8d;
+   border-radius: 25px;
+   text-align: center;
+   width: 50px;
+   padding: 5px; 
+   color: white;
+   font-size: 12px;
+}
+.chip-color-2 {
+   background: #fb8333;
+   border-radius: 25px;
+   text-align: center;
+   width: 50px;
+   padding: 5px; 
+   color: white;
+   font-size: 12px;
+}
+.chip-color-1 {
+   background: #ff6159;
+   border-radius: 25px;
+   text-align: center;
+   width: 50px;
+   padding: 5px; 
+   color: white;
+   font-size: 12px;
 }
