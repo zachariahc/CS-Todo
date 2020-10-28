@@ -4,14 +4,14 @@ import "./Styles/App.css";
 
 function App() {
   const [todos, setTodos] = useState([
-    { name: "Task 1", done: false, id: 1, priority: 3 },
-    { name: "Task 2", done: false, id: 2, priority: 3 },
-    { name: "Task 3", done: false, id: 3, priority: 3 },
-    { name: "Task 4", done: false, id: 4, priority: 3 },
+    { name: "Task 1", done: false, id: 1, priority: 1 },
+    { name: "Task 2", done: false, id: 2, priority: 1 },
+    { name: "Task 3", done: false, id: 3, priority: 1 },
+    { name: "Task 4", done: false, id: 4, priority: 2 },
     { name: "Task 5", done: false, id: 5, priority: 2 },
-    { name: "Task 6", done: false, id: 6, priority: 2 },
-    { name: "Task 7", done: false, id: 7, priority: 2 },
-    { name: "Task 8", done: false, id: 8, priority: 1 },
+    { name: "Task 6", done: false, id: 6, priority: 3 },
+    { name: "Task 7", done: false, id: 7, priority: 3 },
+    { name: "Task 8", done: false, id: 8, priority: 3 },
   ]);
   const [tab, setTab] = useState("Pending");
 
@@ -33,10 +33,10 @@ function App() {
 
   return (
     <div className="app">
-      <div className="main">
-
-    <div style={{border: '2px solid black', display: 'flex', justifyContent: 'center'}}>
-        <div style={{display: 'flex', border: '2px solid pink', width: '90%'}}>
+    <div className="main">
+      {/* Reorder */}
+    <div className="tab-container">
+        <div className="tab-control">
           <p className={tab === "Pending" ? "tab-group__tabs bold" : 'tab-group__tabs '} 
           onClick={() => changeTab("Pending")}>
             Pending
@@ -47,9 +47,11 @@ function App() {
             Completed
           </p>
        </div>
-        </div>
+      </div>
 
-       <div style={{display: 'flex', justifyContent: 'center'}}>
+       <div className="todo-list-group-container">
+
+         
        <div className="todo-list-group" >
           {tab === "Pending"
             ? todos.map((x, i) => {
@@ -80,6 +82,9 @@ function App() {
                   );
                 }
               })}
+              {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
+                 <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
+              }
         </div>
 
         <div className="date-todo-count-container">
@@ -99,8 +104,8 @@ function App() {
             <p className="todo-tasks">Tasks</p>
           </div>
         </div>
-
        </div>
+
       </div>
     </div>
   );

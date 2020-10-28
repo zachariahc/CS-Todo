@@ -40,26 +40,4 @@ export default function Todo({changeToDo, changePriority, todo, i}) {
     )
 }
 
-const styles = {
-    // todoContainer: {
-    //     background: 'white', 
-    //     margin: '15px', 
-    //     paddingTop: '10px'
-    // },
-    // todoGroup: {
-    //     display: 'flex', 
-    //     justifyContent: 'space-between', 
-    //     border: '1px solid black', 
-    //     borderRadius: '3px',
-    //     padding: '10px'
-    // },
-    // nameMargin: {
-    //     marginLeft: '10px'
-    // },
-    // calGroup: {
-    //     paddingLeft: '5px'
-    // },
-    // flexCenter: {
-    //     // display:  'flex', alignItems: 'center'
-    // }
-}
+

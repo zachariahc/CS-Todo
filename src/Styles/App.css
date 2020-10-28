@@ -6,13 +6,27 @@
 
 .main { 
   width: 80%;
-  border:  2px solid red;
   margin-top: 50px;
-  /* height: 100vh; */
+  flex-direction: column;
 }
-
+@media (max-width: 768px){
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.tab-container {
+  /* border: 2px solid black;  */
+  display: flex; 
+  justify-content: center
+}
+.tab-control {
+  display: flex; 
+  /* border: 2px solid pink;  */
+  width: 90%;
+}
 .tab-group { 
-  border: 2px solid red;
+  /* border: 2px solid red; */
   display: flex;
   padding: 10px;
 }
@@ -24,16 +38,28 @@
 .tab-group__tabs + .completed-tab {
   padding-left: 10px;
 }
-
+.todo-list-group-container {
+  display: flex;
+  justify-content: center;
+}
+ @media(max-width: 768px){
+   .todo-list-group-container {
+     flex-direction: column;
+   }
+ }
 .todo-list-group {
   background: white;
   border: 1px solid rgb(233, 231, 231);
   box-shadow: 5px 5px 14px -10px rgba(51,51,51,1);
-
   margin: 0% 5% 0% 5% ;
   width: 55%;
-  /* height: 700px; */
   border-radius: 15px;
+}
+@media(max-width: 768px){
+  .todo-list-group {
+    width: 90%;
+    order: 2;
+  }
 }
 
 .bold {
@@ -41,10 +67,16 @@
 }
 
 .date-todo-count-container {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   margin: 0% 5% 0% 5% ;
-
   width: 25%;
+}
+@media(max-width: 768px) {
+  .date-todo-count-container {
+    height: 375px;
+    width: 90%;
+    order: 1;
+  }
 }
 
 .date-card { 
@@ -83,7 +115,11 @@
   align-items: center;
   justify-content: center;
 }
-
+@media(max-width: 768px){
+  .todo-count-card {
+    width: 100%;
+  }
+}
 .todo-count-card > p {
   margin: 0;
 }
