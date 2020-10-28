@@ -14,6 +14,7 @@ function App() {
     { name: "Task 8", done: false, id: 8, priority: 3 },
   ]);
   const [tab, setTab] = useState("Pending");
+  const [todoName, setTodoName] = useState("")
 
   function changeTab(tab) {
     setTab(tab);
@@ -28,8 +29,16 @@ function App() {
     const newTodos = [...todos];
     newTodos[index].priority = priorityLevel;
     setTodos(newTodos.sort((a, b) => a.priority - b.priority));
-
   };
+  const deleteTodo = (index, name) => {
+    setTodoName(name)
+    const newTodos = [...todos];
+    newTodos.splice(index, 1)
+    setTodos(newTodos)
+    setTimeout(() => {
+      setTodoName('')
+    }, 3000)
+  }
 
   return (
     <div className="app">
@@ -51,8 +60,9 @@ function App() {
 
        <div className="todo-list-group-container">
 
-         
+
        <div className="todo-list-group" >
+         {todoName && <p className="todo-delete">{todoName} has been deleted.</p>}
           {tab === "Pending"
             ? todos.map((x, i) => {
                 if (x.done === false) {
@@ -64,6 +74,7 @@ function App() {
                       i={i}
                       changeToDo={changeToDo}
                       changePriority={changePriority}
+                      deleteTodo={deleteTodo}
                     ></Todo>
                   );
                 }
@@ -78,6 +89,7 @@ function App() {
                       i={i}
                       changeToDo={changeToDo}
                       changePriority={changePriority}
+                      deleteTodo={deleteTodo}
                     ></Todo>
                   );
                 }
