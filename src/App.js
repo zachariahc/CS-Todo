@@ -9,14 +9,14 @@ import "./Styles/App.css";
 
 function App() {
   const [todos, setTodos] = useState([
-    { name: "Task 1", done: false, id: 1, priority: 1 },
-    { name: "Task 2", done: false, id: 2, priority: 1 },
-    { name: "Task 3", done: false, id: 3, priority: 1 },
-    { name: "Task 4", done: false, id: 4, priority: 2 },
-    { name: "Task 5", done: false, id: 5, priority: 2 },
-    { name: "Task 6", done: false, id: 6, priority: 3 },
-    { name: "Task 7", done: false, id: 7, priority: 3 },
-    { name: "Task 8", done: false, id: 8, priority: 3 },
+    { name: "Task 1", done: false, id: 1, priority: 1, date: new Date() },
+    { name: "Task 2", done: false, id: 2, priority: 1, date: new Date() },
+    { name: "Task 3", done: false, id: 3, priority: 1, date: new Date() },
+    { name: "Task 4", done: false, id: 4, priority: 2, date: new Date()},
+    { name: "Task 5", done: false, id: 5, priority: 2, date: new Date() },
+    { name: "Task 6", done: false, id: 6, priority: 3, date: new Date() },
+    { name: "Task 7", done: false, id: 7, priority: 3, date: new Date() },
+    { name: "Task 8", done: false, id: 8, priority: 3, date: new Date() },
   ]);
   const [tab, setTab] = useState("Pending");
   const [todoName, setTodoName] = useState("")
@@ -44,6 +44,11 @@ function App() {
     setTimeout(() => {
       setTodoName('')
     }, 3000)
+  }
+  const changeDate = (index, date) =>{
+    const newTodos = [...todos];
+    newTodos[index].date = date
+    setStartDate(date)
   }
 
   return (
@@ -74,6 +79,8 @@ function App() {
                         changeToDo={changeToDo}
                         changePriority={changePriority}
                         deleteTodo={deleteTodo}
+                        changeDate={changeDate}
+                        startDate={startDate}
                       ></Todo>
                     );
                 })
