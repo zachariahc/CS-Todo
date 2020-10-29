@@ -60,13 +60,14 @@ function App() {
   }
 
   const addFormValue = (value, valName) => {
+    console.log(value, valName)
     const newFormVal = {...formVals}
     switch(valName) {
         case 'name':
         newFormVal.name = value
           break;
         case 'priority':
-        newFormVal.priority = value
+        newFormVal.priority = parseInt(value)
           break;
         case 'date':
         newFormVal.date = value
@@ -75,13 +76,12 @@ function App() {
       }
     setFormVals(newFormVal)
 }
-
 const addTodo = () => {
-  // e.preventDefault()
   const newTodos = [...todos]
   newTodos.push(formVals)
   setTodos(newTodos);
-  setTodos({})
+  console.log(todos)
+
 }
 
   return (
@@ -131,6 +131,9 @@ const addTodo = () => {
             })}
                 {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
                   <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
+                }
+                {tab == 'Pending' && todos.length === 0 && 
+                  <p style={{textAlign: 'center', marginTop: '50px'}}>No todos added yet</p>
                 }
                 <div className="add-btn-container">
                   <AddTodoDialog addFormValue={addFormValue} addTodo={addTodo}/>

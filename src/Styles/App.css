@@ -14,12 +14,14 @@ html {
 /******** Main layout ************/
 
 .main-container {
+  margin-top: 3rem;
   display: flex;
   width: 80%;
 }
 @media(max-width: 768px) {
   .main-container {
     width: 95%;
+    margin-top: 1rem;
   }
 }
 

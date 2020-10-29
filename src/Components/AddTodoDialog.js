@@ -50,7 +50,7 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
                         <label>Priority:</label><br/>
                         <select 
                          required
-                         onChange={(e) => addFormValue(e.target.value, 'priority')} 
+                         onInput={(e) => addFormValue(e.target.value, 'priority')} 
                          name="priority" 
                          id="priority">
                             <option value={1}>High</option>
@@ -59,8 +59,7 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
                         </select>
                         <br/>
                         <label>Date:</label><br/>
-                        <DatePicker
-                        required 
+                        <DatePicker 
                         onChange={date => addDate(date, 'date')} selected={startDate}  />
                          <br/>
                          <br/>
