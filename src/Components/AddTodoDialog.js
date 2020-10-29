@@ -10,12 +10,21 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
     const [show, setShow] = useState(false)
     const [startDate, setStartDate] = useState(new Date());
 
+    const [name, setName] = useState('')
+    const [priority, setPriority] = useState('')
+    const [formDate, setFormDate] = useState('')
+
+
+    const disableSubmit = () => {
+      return name && priority && formDate
+    }
+
     const showDialog = (show) => {
         show ? setShow(true) : setShow(false)
     }
     // TODO: figure this out later
     window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
           setShow(false)
         }
       }
@@ -23,6 +32,27 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
         e.preventDefault()
         addTodo()
         showDialog()
+        // Reset validation
+        setName('')
+        setPriority('')
+        setFormDate('')
+     }
+
+     const validateForm = (value, name) => {
+         console.log(value, name)
+         switch(name){
+             case 'priority':
+             addFormValue(value, 'priority')
+             setPriority(value)
+             break;
+             case 'name':
+             addFormValue(value, 'name')
+             setName(value)
+             break;
+             case 'date':
+             addDate(value, name)
+             setFormDate(value)
+         }
      }
 
      const addDate = (date, type) => {
@@ -43,14 +73,14 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
                         <input
                          required
                          placeholder="Todo name"  
-                         onChange={(e) => addFormValue(e.target.value, 'name')} 
+                         onChange={(e) => validateForm(e.target.value, 'name')} 
                          type="text" 
                          id="todoname" 
                          name="todoname"/><br/>
                         <label>Priority:</label><br/>
                         <select 
                          required
-                         onInput={(e) => addFormValue(e.target.value, 'priority')} 
+                         onInput={(e) => validateForm(e.target.value, 'priority')} 
                          name="priority" 
                          id="priority">
                             <option value={1}>High</option>
@@ -60,10 +90,14 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
                         <br/>
                         <label>Date:</label><br/>
                         <DatePicker 
-                        onChange={date => addDate(date, 'date')} selected={startDate}  />
+                         
+                         onChange={date => validateForm(date, 'date')} selected={startDate}  />
                          <br/>
                          <br/>
-                        <input onClick={(e) => addTodoAndSubmit(e)} className="form-submit" type="submit" value="Submit"/>
+                        <input 
+                        disabled={!(name && priority && formDate)}
+                        onClick={(e) => addTodoAndSubmit(e)}
+                        className="form-submit" type="submit" value="Submit"/>
                     </form> 
                 </div>
             </div>

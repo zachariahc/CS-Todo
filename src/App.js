@@ -119,7 +119,7 @@ const addTodo = () => {
                 {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
                   <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
                 }
-                {tab == 'Pending' && todos.length === 0 && 
+                {tab === 'Pending' && todos.length === 0 && 
                   <p style={{textAlign: 'center', marginTop: '50px'}}>No todos added yet</p>
                 }
                 <div className="add-btn-container">
