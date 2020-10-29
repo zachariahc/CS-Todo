@@ -22,14 +22,24 @@ export default function Todo({
         }
         return colorOfChip
     }
+    const squareColor = (priorityColor, done) => {
+        // Could be refactored to a switch
+        let square
+        if(priorityColor === 1 && !done) square = `check-${priorityColor}`
+        if(priorityColor === 2 && !done) square = `check-${priorityColor}`
+        if(priorityColor === 3 && !done) square = `check-${priorityColor}`
+        return square
+    }
+
 
     return (
         <div className="todo-container">
             <div className="todo-group">
                 <div className="todo-text-icon">
-                 <img className="pointer" 
+                 <img className="pointer filter" 
+                    className={squareColor(todo.priority, todo.done)}
                     alt={todo.name} onClick={() => changeToDo(index)} 
-                    src={todo.done ? checked : unchecked}/>
+                    src={todo.done ? checked : unchecked }/>
                   <span className="todo-name">{todo.name}</span>
                 </div>
                 <div className="todo-text-icon">

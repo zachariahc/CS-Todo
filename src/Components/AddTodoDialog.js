@@ -3,31 +3,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import add from '../Assets/add.png'
 
-import "../Styles/Modal.css"
+import "../Styles/Dialog.css"
 
 export default function AddTodoDialog({ addFormValue, addTodo }) {
-    var modal = document.getElementById("myModal");
+    // This whole thing should be refactored to be a form component
+
+    // Start of local state
     const [show, setShow] = useState(false)
     const [startDate, setStartDate] = useState(new Date());
-
     const [name, setName] = useState('')
     const [priority, setPriority] = useState('')
     const [formDate, setFormDate] = useState('')
-
-
-    const disableSubmit = () => {
-      return name && priority && formDate
-    }
-
+    // Start of all logical funcitons
     const showDialog = (show) => {
         show ? setShow(true) : setShow(false)
     }
-    // TODO: figure this out later
-    window.onclick = function(event) {
-        if (event.target === modal) {
-          setShow(false)
-        }
-      }
      const addTodoAndSubmit = (e) => {
         e.preventDefault()
         addTodo()
@@ -39,7 +29,6 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
      }
 
      const validateForm = (value, name) => {
-         console.log(value, name)
          switch(name){
              case 'priority':
              addFormValue(value, 'priority')
@@ -90,7 +79,6 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
                         <br/>
                         <label>Date:</label><br/>
                         <DatePicker 
-                         
                          onChange={date => validateForm(date, 'date')} selected={startDate}  />
                          <br/>
                          <br/>
@@ -101,7 +89,8 @@ export default function AddTodoDialog({ addFormValue, addTodo }) {
                     </form> 
                 </div>
             </div>
-}
+        // Curly brace below is part of the "show" logic for the dialog
+        }
         </div>
     )
 }

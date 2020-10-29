@@ -102,3 +102,12 @@
     border-radius: 10px;
     color: rgb(250, 84, 84);
   }
+  .check-1 {
+    filter: invert(70%) sepia(38%) saturate(6635%) hue-rotate(322deg) brightness(98%) contrast(105%);
+  }
+  .check-2 {
+    filter: invert(53%) sepia(95%) saturate(1200%) hue-rotate(339deg) brightness(106%) contrast(97%);
+  }
+  .check-3 {
+    filter: invert(74%) sepia(42%) saturate(481%) hue-rotate(91deg) brightness(90%) contrast(85%);
+  }

@@ -34,10 +34,12 @@
   }
   form {
     text-align: center;
+    padding: 20px;
   }
   form > label, input, select { 
-      margin: 5px;
+      margin: 10px;
   }
+
   input {
       border-radius: 3px;
       border: 1px solid rgb(165, 165, 165);
@@ -49,7 +51,10 @@
   }
  .form-submit {
     font-size: 16px;
+    background-color: rgb(99, 155, 219);
+    color: white;
     border-radius: 5px;
+    width: 100px;
     padding: 5px;
  }
   
