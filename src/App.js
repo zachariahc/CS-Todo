@@ -3,24 +3,32 @@ import DatePicker from "react-datepicker";
 import Todo from "./Components/Todo.js";
 import Tabs from "./Components/Tabs.js"
 import DateAndCounter from "./Components/DateAndCounter.js"
+import AddTodoDialog from "./Components/AddTodoDialog.js"
 import add from './Assets/add.png'
 import "react-datepicker/dist/react-datepicker.css";
 import "./Styles/App.css";
 
 function App() {
   const [todos, setTodos] = useState([
-    { name: "Task 1", done: false, id: 1, priority: 1, date: new Date() },
-    { name: "Task 2", done: false, id: 2, priority: 1, date: new Date() },
-    { name: "Task 3", done: false, id: 3, priority: 1, date: new Date() },
-    { name: "Task 4", done: false, id: 4, priority: 2, date: new Date()},
-    { name: "Task 5", done: false, id: 5, priority: 2, date: new Date() },
-    { name: "Task 6", done: false, id: 6, priority: 3, date: new Date() },
-    { name: "Task 7", done: false, id: 7, priority: 3, date: new Date() },
-    { name: "Task 8", done: false, id: 8, priority: 3, date: new Date() },
+    { id: 1, name: "Task 1", done: false, priority: 1, date: new Date() },
+    { id: 2, name: "Task 2", done: false, priority: 1, date: new Date() },
+    { id: 3, name: "Task 3", done: false, priority: 1, date: new Date() },
+    { id: 4, name: "Task 4", done: false, priority: 2, date: new Date()},
+    { id: 5, name: "Task 5", done: false, priority: 2, date: new Date() },
+    { id: 6, name: "Task 6", done: false, priority: 3, date: new Date() },
+    { id: 7, name: "Task 7", done: false, priority: 3, date: new Date() },
+    { id: 8, name: "Task 8", done: false, priority: 3, date: new Date() },
   ]);
   const [tab, setTab] = useState("Pending");
   const [todoName, setTodoName] = useState("")
   const [startDate, setStartDate] = useState(new Date());
+  const [formVals, setFormVals] = useState({
+    id: parseInt(Math.random() * 100),
+    name: '',
+    done: false,
+    priority: 1,
+    date: new Date(),
+})
 
 
   function changeTab(tab) {
@@ -51,6 +59,31 @@ function App() {
     setStartDate(date)
   }
 
+  const addFormValue = (value, valName) => {
+    const newFormVal = {...formVals}
+    switch(valName) {
+        case 'name':
+        newFormVal.name = value
+          break;
+        case 'priority':
+        newFormVal.priority = value
+          break;
+        case 'date':
+        newFormVal.date = value
+          break;
+        default:
+      }
+    setFormVals(newFormVal)
+}
+
+const addTodo = () => {
+  // e.preventDefault()
+  const newTodos = [...todos]
+  newTodos.push(formVals)
+  setTodos(newTodos);
+  setTodos({})
+}
+
   return (
     <div className="app">
           
@@ -65,45 +98,42 @@ function App() {
         <div className="main-tab-container">
           <Tabs changeTab={changeTab} tab={tab}/>
         </div>
-        <div className="main-todo-list-container">
+        <div className="main-todo-list-container">          
           <div className="todo-list-group">
           {todoName && <p className="todo-delete">{todoName} has been deleted.</p>}
-            {tab === "Pending"
-              ? todos.map((x, i) => {
-                    return (
-                      <Todo
-                        key={i}
-                        tab={tab}
-                        todo={x}
-                        i={i}
-                        changeToDo={changeToDo}
-                        changePriority={changePriority}
-                        deleteTodo={deleteTodo}
-                        changeDate={changeDate}
-                        startDate={startDate}
-                      ></Todo>
-                    );
-                })
-              : todos.map((x, i) => {
-                  if (x.done === true) {
-                    return (
-                      <Todo
-                        key={i}
-                        tab={tab}
-                        todo={x}
-                        i={i}
-                        changeToDo={changeToDo}
-                        changePriority={changePriority}
-                        deleteTodo={deleteTodo}
-                      ></Todo>
-                    );
-                  }
-                })}
+          {todos.map((todo, index) => {
+            if(tab === "Pending"){
+              return( <Todo
+                key={index}
+                tab={tab}
+                todo={todo}
+                index={index}
+                changeToDo={changeToDo}
+                changePriority={changePriority}
+                deleteTodo={deleteTodo}
+                changeDate={changeDate}
+                startDate={startDate}
+              ></Todo>)
+            } else if (tab === "Completed" && todo.done === true){
+              return (
+                <Todo
+                  key={index}
+                  tab={tab}
+                  todo={todo}
+                  index={index}
+                  changeToDo={changeToDo}
+                  changePriority={changePriority}
+                  deleteTodo={deleteTodo}
+                  changeDate={changeDate}
+                  startDate={startDate}
+                ></Todo>)
+            }
+            })}
                 {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
                   <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
                 }
                 <div className="add-btn-container">
-                  <img src={add} />
+                  <AddTodoDialog addFormValue={addFormValue} addTodo={addTodo}/>
                 </div>
           </div>
         </div>

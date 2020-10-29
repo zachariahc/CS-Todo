@@ -1,10 +1,8 @@
 import React from 'react'
 import "../Styles/Tabs.css"
 
-export default function Tabs({
-    tab,
-    changeTab
-}) {
+export default function Tabs( {tab, changeTab } ) 
+{
     return (
         <div className="tab-container">
         <div className="tab-control">
