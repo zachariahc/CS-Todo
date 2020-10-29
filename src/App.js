@@ -1,7 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 import Todo from "./Components/Todo.js";
 import Tabs from "./Components/Tabs.js"
 import DateAndCounter from "./Components/DateAndCounter.js"
+import add from './Assets/add.png'
+import "react-datepicker/dist/react-datepicker.css";
 import "./Styles/App.css";
 
 function App() {
@@ -17,11 +20,12 @@ function App() {
   ]);
   const [tab, setTab] = useState("Pending");
   const [todoName, setTodoName] = useState("")
+  const [startDate, setStartDate] = useState(new Date());
+
 
   function changeTab(tab) {
     setTab(tab);
   }
-
   const changeToDo = (index) => {
     const newTodos = [...todos];
     newTodos[index].done === false ? newTodos[index].done = true : newTodos[index].done = false
@@ -44,8 +48,15 @@ function App() {
 
   return (
     <div className="app">
+          
       <div className="main-container">
+
       <div className="main-layout">
+
+        {/* <label> */}
+
+        {/* </label> */}
+
         <div className="main-tab-container">
           <Tabs changeTab={changeTab} tab={tab}/>
         </div>
@@ -84,27 +95,13 @@ function App() {
                 {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
                   <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
                 }
+                <div className="add-btn-container">
+                  <img src={add} />
+                </div>
           </div>
         </div>
         <div className="main-date-count-container">
           <DateAndCounter todoCount={todos.length}/>
-          {/* <div className="date-todo-count-container">
-            <div className="date-card">
-              <p className="date-card-day">
-              Wednesday
-              </p>
-              <p className="date-card-month-year">
-              November, 21
-              </p>
-              <p className="date-card-year">
-              2020
-              </p>
-            </div>
-            <div className="todo-count-card">
-              <p className="todo-count">{todos.length}</p>
-              <p className="todo-tasks">Tasks</p>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

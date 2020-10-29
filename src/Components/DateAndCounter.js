@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import "../Styles/DateAndCounter.css"
 
 export default function DateAndCounter({ todoCount }) {
     return (

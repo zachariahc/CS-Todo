@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState }  from 'react'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "../Styles/Todo.css";
 import unchecked from '../Assets/unchecked.png'
 import checked from '../Assets/checked.png'
@@ -11,6 +13,7 @@ export default function Todo({
     deleteTodo,
     todo, 
     i}) {
+    const [startDate, setStartDate] = useState(new Date());
     // Decides color of chip when priorty is selected
     const chipColor = (priorityColor, todoPrority) => {
         let colorOfChip = 'no-chip-color';
@@ -29,9 +32,12 @@ export default function Todo({
                 </div>
 
                 <div className="todo-text-icon">
-                    <img src={cancel} onClick={() => deleteTodo(i, todo.name)}/>
+                    <img className="pointer" src={cancel} onClick={() => deleteTodo(i, todo.name)}/>
                       <span className="cal-group cal-date">Nov 7th, 2020</span>
-                    <img className="cal-group" src={calbutton}/>
+                      <DatePicker 
+                        selected={startDate} 
+                        onChange={date => setStartDate(date)} 
+                        customInput={<img className="cal-group" src={calbutton}/>}/>
                 </div>
             </div>
 

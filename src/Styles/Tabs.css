@@ -1,0 +1,23 @@
+.tab-container {
+    /* border: 2px solid black;  */
+    display: flex; 
+    justify-content: center
+  }
+  .tab-control {
+    display: flex; 
+    /* border: 2px solid pink;  */
+    width: 90%;
+  }
+  .tab-group { 
+    /* border: 2px solid red; */
+    display: flex;
+    padding: 10px;
+  }
+  
+  .tab-group__tabs {
+    cursor: pointer
+  }
+  
+  .tab-group__tabs + .completed-tab {
+    padding-left: 10px;
+  }

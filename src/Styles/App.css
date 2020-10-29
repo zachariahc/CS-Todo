@@ -11,140 +11,16 @@ html {
   justify-content: center;
 }
 
-.tab-container {
-  /* border: 2px solid black;  */
-  display: flex; 
-  justify-content: center
-}
-.tab-control {
-  display: flex; 
-  /* border: 2px solid pink;  */
-  width: 90%;
-}
-.tab-group { 
-  /* border: 2px solid red; */
-  display: flex;
-  padding: 10px;
-}
-
-.tab-group__tabs {
-  cursor: pointer
-}
-
-.tab-group__tabs + .completed-tab {
-  padding-left: 10px;
-}
-
-.todo-list-group {
-  padding-top: 15px;
-  background: white;
-  opacity: .9;
-  border: 1px solid rgb(233, 231, 231);
-  box-shadow: 5px 5px 14px -10px rgba(51,51,51,1);
-  margin: 0% 5% 0% 5% ;
-  /* width: 55%; */
-  border-radius: 15px;
-}
-@media(max-width: 768px){
-  .todo-list-group {
-    width: 90%;
-    order: 2;
-  }
-}
-.todo-delete {
-  text-align: center;
-  margin: 0 auto;
-  font-size: 12px;
-  border: 1px solid rgb(250, 84, 84);
-  width: 200px;
-  border-radius: 10px;
-  color: rgb(250, 84, 84);
-}
-.bold {
-  font-weight: bold;
-}
-
-.date-todo-count-container {
-  /* border: 2px solid red; */
-  margin: 0% 5% 0% 5% ;
-  width: 25%;
-}
-@media(max-width: 768px) {
-  .date-todo-count-container {
-    height: 375px;
-    width: 90%;
-    order: 1;
-  }
-}
-
-.date-card { 
-  opacity: .9;
-  border: 1px solid rgb(233, 231, 231);
-  background: white;
-  box-shadow: 5px 5px 14px -10px rgba(51,51,51,1);
-  border-radius: 15px;
-  height: 150px;
-  min-width: 225px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.date-card > p {
-  margin: 0;
-  margin-left: 10px;
-}
-.date-card-day, .date-card-year {
-  font-size: 1.75rem;
-  color: #545454
-}
-.date-card-month-year {
-   font-size: 2.25rem;
-   color: #1f1f1f;
-}
-
-.todo-count-card {
-  opacity: .9;
-  border: 1px solid rgb(233, 231, 231);
-  background: white;
-  box-shadow: 5px 5px 14px -10px rgba(51,51,51,1);
-  margin-top: 30px;
-  min-width: 165px;
-  height: 180px;
-  width: 65%;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-@media(max-width: 768px){
-  .todo-count-card {
-    width: 100%;
-  }
-}
-.todo-count-card > p {
-  margin: 0;
-}
-
-.todo-count {
-  font-weight: 800; 
-  color: #265a88;
-  font-size: 4rem;
-}
-
-.todo-tasks {
-  font-weight: 500;
-  font-size: 1.12rem;
-}
-
-
-
-
-/* Start new */
+/******** Main layout ************/
 
 .main-container {
   display: flex;
   width: 80%;
+}
+@media(max-width: 768px) {
+  .main-container {
+    width: 95%;
+  }
 }
 
 .main-layout {
@@ -173,6 +49,7 @@ html {
 
 .main-date-count-container {
   width: 30%; 
+  z-index: -10;
 }
 @media(max-width: 768px) {
   .main-date-count-container {
@@ -181,3 +58,25 @@ html {
     margin-top: 15px;
   }
 }
+/*******************************/
+
+.bold {
+  font-weight: bold;
+}
+
+.add-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.react-datepicker-popper {
+  opacity: 1 !important;
+  background: white;
+  /* z-index: 99999 !important; */
+  /* background: red !important; */
+}
+.react-datepicker {
+  background: white !important;
+}
+
+
