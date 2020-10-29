@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
 import Todo from "./Components/Todo.js";
 import Tabs from "./Components/Tabs.js"
 import DateAndCounter from "./Components/DateAndCounter.js"
 import AddTodoDialog from "./Components/AddTodoDialog.js"
-import add from './Assets/add.png'
-import "react-datepicker/dist/react-datepicker.css";
 import "./Styles/App.css";
 
 function App() {
@@ -29,7 +26,7 @@ function App() {
     priority: 1,
     date: new Date(),
 })
-
+// Start of functions to modify state/local data
 
   function changeTab(tab) {
     setTab(tab);
@@ -60,7 +57,6 @@ function App() {
   }
 
   const addFormValue = (value, valName) => {
-    console.log(value, valName)
     const newFormVal = {...formVals}
     switch(valName) {
         case 'name':
@@ -79,22 +75,15 @@ function App() {
 const addTodo = () => {
   const newTodos = [...todos]
   newTodos.push(formVals)
-  setTodos(newTodos);
-  console.log(todos)
-
+  setTodos(newTodos.sort((a, b) => a.priority - b.priority));
 }
+
+// Start of of main app and layout
 
   return (
     <div className="app">
-          
       <div className="main-container">
-
       <div className="main-layout">
-
-        {/* <label> */}
-
-        {/* </label> */}
-
         <div className="main-tab-container">
           <Tabs changeTab={changeTab} tab={tab}/>
         </div>
@@ -112,8 +101,7 @@ const addTodo = () => {
                 changePriority={changePriority}
                 deleteTodo={deleteTodo}
                 changeDate={changeDate}
-                startDate={startDate}
-              ></Todo>)
+                startDate={startDate}/>)
             } else if (tab === "Completed" && todo.done === true){
               return (
                 <Todo
@@ -125,8 +113,7 @@ const addTodo = () => {
                   changePriority={changePriority}
                   deleteTodo={deleteTodo}
                   changeDate={changeDate}
-                  startDate={startDate}
-                ></Todo>)
+                  startDate={startDate}/>)
             }
             })}
                 {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
