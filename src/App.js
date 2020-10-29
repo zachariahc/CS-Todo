@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Todo from "./Components/Todo.js";
+import Tabs from "./Components/Tabs.js"
+import DateAndCounter from "./Components/DateAndCounter.js"
 import "./Styles/App.css";
 
 function App() {
@@ -22,7 +24,7 @@ function App() {
 
   const changeToDo = (index) => {
     const newTodos = [...todos];
-    newTodos[index].done = true;
+    newTodos[index].done === false ? newTodos[index].done = true : newTodos[index].done = false
     setTodos(newTodos);
   };
   const changePriority = (index, priorityLevel) => {
@@ -42,83 +44,70 @@ function App() {
 
   return (
     <div className="app">
-    <div className="main">
-      {/* Reorder */}
-    <div className="tab-container">
-        <div className="tab-control">
-          <p className={tab === "Pending" ? "tab-group__tabs bold" : 'tab-group__tabs '} 
-          onClick={() => changeTab("Pending")}>
-            Pending
-          </p>
-          <p
-            className={tab !== "Pending" ? "tab-group__tabs completed-tab bold" : 'tab-group__tabs completed-tab '} 
-            onClick={() => changeTab("Completed")}>
-            Completed
-          </p>
-       </div>
-      </div>
-
-       <div className="todo-list-group-container">
-
-
-       <div className="todo-list-group" >
-         {todoName && <p className="todo-delete">{todoName} has been deleted.</p>}
-          {tab === "Pending"
-            ? todos.map((x, i) => {
-                if (x.done === false) {
-                  return (
-                    <Todo
-                      key={i}
-                      tab={tab}
-                      todo={x}
-                      i={i}
-                      changeToDo={changeToDo}
-                      changePriority={changePriority}
-                      deleteTodo={deleteTodo}
-                    ></Todo>
-                  );
-                }
-              })
-            : todos.map((x, i) => {
-                if (x.done === true) {
-                  return (
-                    <Todo
-                      key={i}
-                      tab={tab}
-                      todo={x}
-                      i={i}
-                      changeToDo={changeToDo}
-                      changePriority={changePriority}
-                      deleteTodo={deleteTodo}
-                    ></Todo>
-                  );
-                }
-              })}
-              {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
-                 <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
-              }
+      <div className="main-container">
+      <div className="main-layout">
+        <div className="main-tab-container">
+          <Tabs changeTab={changeTab} tab={tab}/>
         </div>
-
-        <div className="date-todo-count-container">
-          <div className="date-card">
-            <p className="date-card-day">
-            Wednesday
-            </p>
-            <p className="date-card-month-year">
-            November, 21
-            </p>
-            <p className="date-card-year">
-            2020
-            </p>
-          </div>
-          <div className="todo-count-card">
-            <p className="todo-count">{todos.length}</p>
-            <p className="todo-tasks">Tasks</p>
+        <div className="main-todo-list-container">
+          <div className="todo-list-group">
+          {todoName && <p className="todo-delete">{todoName} has been deleted.</p>}
+            {tab === "Pending"
+              ? todos.map((x, i) => {
+                    return (
+                      <Todo
+                        key={i}
+                        tab={tab}
+                        todo={x}
+                        i={i}
+                        changeToDo={changeToDo}
+                        changePriority={changePriority}
+                        deleteTodo={deleteTodo}
+                      ></Todo>
+                    );
+                })
+              : todos.map((x, i) => {
+                  if (x.done === true) {
+                    return (
+                      <Todo
+                        key={i}
+                        tab={tab}
+                        todo={x}
+                        i={i}
+                        changeToDo={changeToDo}
+                        changePriority={changePriority}
+                        deleteTodo={deleteTodo}
+                      ></Todo>
+                    );
+                  }
+                })}
+                {tab !== 'Pending' && todos.filter(x => x.done).length === 0 && 
+                  <p style={{textAlign: 'center', marginTop: '50px'}}>No todos moved to done yet</p>
+                }
           </div>
         </div>
-       </div>
-
+        <div className="main-date-count-container">
+          <DateAndCounter todoCount={todos.length}/>
+          {/* <div className="date-todo-count-container">
+            <div className="date-card">
+              <p className="date-card-day">
+              Wednesday
+              </p>
+              <p className="date-card-month-year">
+              November, 21
+              </p>
+              <p className="date-card-year">
+              2020
+              </p>
+            </div>
+            <div className="todo-count-card">
+              <p className="todo-count">{todos.length}</p>
+              <p className="todo-tasks">Tasks</p>
+            </div>
+          </div> */}
+        </div>
       </div>
+    </div>
     </div>
   );
 }

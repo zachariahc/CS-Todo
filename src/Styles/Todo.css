@@ -30,10 +30,14 @@
 }
 .chip-levels-group > p {
     margin: 0px 3px;
+    cursor: pointer;
 }
 .chip-levels-group { 
   display: flex;
   justify-content: flex-end;
+}
+.pointer {
+  cursor: pointer;
 }
 .no-chip-color {
    background: #CBCBCB;
